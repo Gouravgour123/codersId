@@ -2,7 +2,7 @@ const { companyModel } = require("../Models/companyModel")
 
 
 let createcompany = async(req,res)=>{
-    console.log('reqBody', req.body)
+    console.log(req.body)
    
     let oldCompany= await companyModel.findOne({companyName:req.body.companyName})
     if(oldCompany){return res.status(401).send({success:false,message:"Company Already exist"})}
