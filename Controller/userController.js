@@ -19,7 +19,7 @@ const Createuser1=async(req, res)=>{
     }
     console.log(req.body)
      let newuser = await userModel1.create(req.body)
-     res.status(201).send({success: true, message:" registered succefully",data:newuser})
+     res.status(201).send({success: true, message:" registered  is succefully",data:newuser})
     }
 
 
