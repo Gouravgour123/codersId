@@ -1,38 +1,45 @@
-const { userModel, userModel1 } = require("../Models/userModels")
+const { userModel1 } = require("../Models/userModels");
+const bcrypt = require("bcrypt");
 
-// const Createuser1 =async (req,res)=>{
-//     console.log("running")
-//     let newuser = await userModel1.create(req.body)
-//     if(newuser){
+const registration = async (req, res) => {
+  let user = await userModel1.findOne({ email: req.body.email });
+  if (user) {
+    return res
+      .status(409)
+      .send({ success: false, message: " Email is already exists" });
+  }
 
-//         res.send("rrrrrr")
-//     }
-//     res.send(newuser)
-// }
+  let saltRounds = 10;
+  let hasspassword = await bcrypt.hash(req.body.password, saltRounds);
+  let newuser = await userModel1.create({
+    ...req.body,
+    password: hasspassword,
+  });
 
-const Createuser1=async(req, res)=>{
+  res
+    .status(201)
+    .send({
+      success: true,
+      message: " registered  is succefully",
+      data: newuser,
+    });
+};
+const login = async (req, res) => {
+  let { email, password } = req.body;
 
-    let user = await userModel1.findOne({email:req.body.email})
-    if(user){
-        return res.status(409).send({success: false, message:" Email is already exists"})
+  let user = await userModel1.findOne({ email: email });
+  // console.log(user)
+  if (!user) {
+    return res.status(409).send({ success: false, message: "Email not exit" });
+  }
 
-    }
-    console.log(req.body)
-     let newuser = await userModel1.create(req.body)
-     res.status(201).send({success: true, message:" registered  is succefully",data:newuser})
-    }
+  const matchedPassword = await bcrypt.compare(password, user.password);
+  if (!matchedPassword) {
+    return res.status(409).send({ success: false, message: "wrong password" });
+  }
+  res
+    .status(200)
+    .send({ success: true, message: "Login Successfully", data: user });
+};
 
-
-     let login = async(req,res)=>{
-
-        let {email,password} = req.body;
-
-        let user = await userModel1.findOne({email:email})
-        if(!user){ return res.status(409).send({success:false,message:"Email not exit"})}
-        if(password != user.password){return res.status(409).send({success:false,message:"wrong password"})}
-        res.status(200).send({success:true,message:'Login Successfully',data:user})
-     }
-    //  console.log(data)
-
-
-module.exports = {Createuser1,login}
+module.exports = { registration, login };
