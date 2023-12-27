@@ -2,6 +2,7 @@ const { userModel1 } = require("../Models/userModels");
 const bcrypt = require("bcrypt");
 
 const registration = async (req, res) => {
+  console.log(req.body)
   let user = await userModel1.findOne({ email: req.body.email });
   if (user) {
     return res
