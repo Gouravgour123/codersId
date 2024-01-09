@@ -1,5 +1,5 @@
 //   let hasspassword = await bcrypt.hash(req.body.password, saltRounds);
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt")
 
 let hashPass  = async(simplepassword)=>{
 let saltRound = 10;
@@ -8,7 +8,7 @@ return hasspassword;
 }
 
 let comparePassword = async (simplepassword,hasspassword)=>{
-    let compared = await bcrypt.compare(simplepassword,hasspassword);
+    let compared = await bcrypt.compare(simplepassword,hasspassword)
     return compared;
 }
 

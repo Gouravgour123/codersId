@@ -3,19 +3,21 @@ require('./Dbconnection/connection')
 const { userRouter } = require('./Routes/userRoutes');
 const { companyRoutes } = require('./Routes/companyRoutes');
 const { ratingRoutes } = require('./Routes/RatingRout');
-// const { companylist } = require('./Controller/companyController');
+require('dotenv').config();
 const app = express();
 
-let PORT = 4000;
+// let PORT = 4000;
 
 app.use(express.json());
-app.use(express.urlencoded())
+app.use(express.urlencoded({ extended: false}));
 
+
+  
 app.use('/user',userRouter)
 app.use('/company',companyRoutes)
 // app.use('/companyList',companylist)
 app.use('/review',ratingRoutes)
 
-app.listen(PORT, ()=>{
-    console.log(`server is running at ${PORT}`);
+app.listen(process.env.PORT, ()=>{
+    console.log(`server is running at ${process.env.PORT}`);
 })

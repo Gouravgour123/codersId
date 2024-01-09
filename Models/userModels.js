@@ -10,7 +10,7 @@ const userSchema =new mongoose.Schema({
     profilepic:{type:String},
 },{timestamps:true});
 
-// const userModel = new mongoose.model("userSchema",userModel)
+
 const userModel1 = new mongoose.model("userModel1",userSchema)
 
 module.exports = {userModel1}

@@ -11,11 +11,11 @@ const reviewSchema = new mongoose.Schema({
        
     },
     rating:{
-        type:String,
+        type:Number,
         require:true,
     },
     isActive:{
-        type:String,
+        type:Boolean,
         require:true,
     },
     company_id:{
