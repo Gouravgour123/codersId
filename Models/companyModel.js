@@ -1,5 +1,4 @@
-const { default: mongoose } = require("mongoose");
-
+const  mongoose  = require("mongoose");
 const companySchema = new mongoose.Schema({
     companyName:{
         type:String,

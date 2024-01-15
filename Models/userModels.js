@@ -7,10 +7,10 @@ const userSchema =new mongoose.Schema({
     mobile:{type:String, require:true},
     city:{type:String, require:true},
     state:{type:String, require:true},
-    profilepic:{type:String, require},
+    profilepic:{type:String},
 },{timestamps:true});
 
-// const userModel = new mongoose.model("userSchema",userModel)
+
 const userModel1 = new mongoose.model("userModel1",userSchema)
 
 module.exports = {userModel1}
