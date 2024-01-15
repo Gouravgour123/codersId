@@ -39,7 +39,7 @@ const singleCompany1 = async (req, res) => {
   try {
     let company = await companyModel.findById(req.params.id).populate("userId")
     if (!company) { return res.status(404) .send({ success: false, message: "No Company Found" });}
-   let allreview = await reviewmodel.find({company_id:req.params.id}).populate("user_id")
+   let allreview = await reviewModel.find({company_id:req.params.id}).populate("user_id")
     res .status(200).send({success: true, message: "Company Found", data: company,allreview:allreview,TotalReviews:allreview.length })
   
   } catch (error) {
@@ -71,7 +71,8 @@ const singleCompany1 = async (req, res) => {
     let obj = {}
     try{
 
-     let {companyName,location,city,founded}= req.body
+    //  let {companyName,location,city,founded}= req.query;
+     let {companyName,location,city,founded}= req.params;
      if(companyName){
        obj.companyName = companyName
       }
@@ -88,7 +89,6 @@ const singleCompany1 = async (req, res) => {
     let company = await companyModel.find(obj)
      if(company.length==0){res.status(404).send({success:false,message:"No company found"})}
      res.status(200).send({success:true,message:"All result",Total:company.length,data:company})
-
     }
     catch{
 

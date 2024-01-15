@@ -19,7 +19,6 @@ require("dotenv").config();
 const verifyToken = async (req, res, next) => {
   try {
     let token = req.header("Authorization");
-  
     if (!token) {
       return res
         .status(400)
@@ -27,8 +26,6 @@ const verifyToken = async (req, res, next) => {
     }
     let tokenV = token.split(" ")[1];
     var decoded = jwt.verify(tokenV, process.env.JWTKEY);
-   
-
     req.user = decoded;
     next();
   } catch (error) {

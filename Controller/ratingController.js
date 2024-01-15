@@ -15,7 +15,7 @@ const updateReview = async(req,res)=>{
 
    try{
       let review = await reviewModel.findOne({ _id:req.params.id })
-      if(req.userID != reviewModel.user_id){return res.status(400).send({success:false,message:"not authorize"})}
+      if(req.userID != review.user_id){return res.status(400).send({success:false,message:"not authorize"})}
       let updatedReview = await reviewModel.findByIdAndUpdate(req.params.id,req.body,{new:true})
       if(!updatedReview)return res.status(400).send({success:false,message:"Couldnot update"})
       res.status(200).send({success:true,message:"Review updated",data: updatedReview})

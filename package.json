@@ -1,7 +1,6 @@
 {
   "name": "id",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js"
@@ -19,5 +18,14 @@
     "nodemailer": "^6.9.8",
     "nodemon": "^3.0.2",
     "validator": "^13.11.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gouravgour123/codersId.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Gouravgour123/codersId/issues"
+  },
+  "homepage": "https://github.com/Gouravgour123/codersId#readme",
+  "description": ""
 }
